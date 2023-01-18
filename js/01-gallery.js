@@ -4,6 +4,7 @@ import { galleryItems } from "./gallery-items.js";
 console.log(galleryItems);
 
 const gallery = document.querySelector(".gallery");
+gallery.addEventListener('click', showModal);
 
 const galleryElements = galleryItems
   .map(item => 
@@ -20,6 +21,30 @@ const galleryElements = galleryItems
   )
   .join('');
 
-//
-
 gallery.insertAdjacentHTML("beforeend", galleryElements);
+
+function showModal(e) {
+  e.preventDefault();
+
+  if (e.target.nodeName !== 'IMG') {
+    return;
+  }
+
+  basicLightbox
+    .create(
+      `
+		<img width="1400" height="900" src="${e.target.dataset.source}">
+	`
+    )
+    .show();
+
+  window.addEventListener('keydown', onEscClose);
+}
+
+function onEscClose(e) {
+  
+  if (e.code === 'Escape') {
+    console.log("нажал Esc");
+    basicLightbox.close();
+  }
+}

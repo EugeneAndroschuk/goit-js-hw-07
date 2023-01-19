@@ -30,21 +30,21 @@ function showModal(e) {
     return;
   }
 
-  basicLightbox
-    .create(
-      `
+  const modal = basicLightbox.create(
+    `
 		<img width="1400" height="900" src="${e.target.dataset.source}">
-	`
-    )
-    .show();
+	`,
+    {
+      onShow: (modal) => window.addEventListener("keydown", onEscClose),
+      onClose: (modal) => window.removeEventListener("keydown", onEscClose),
+    }
+  );
+    modal.show();
 
-  window.addEventListener('keydown', onEscClose);
-}
-
-function onEscClose(e) {
-  
-  if (e.code === 'Escape') {
-    console.log("нажал Esc");
-    basicLightbox.close();
+  function onEscClose(e) {
+    if (e.code === "Escape") {
+      modal.close();
+    }
   }
+
 }

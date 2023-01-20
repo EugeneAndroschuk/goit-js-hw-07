@@ -35,8 +35,8 @@ function showModal(e) {
 		<img width="1400" height="900" src="${e.target.dataset.source}">
 	`,
     {
-      onShow: (modal) => window.addEventListener("keydown", onEscClose),
-      onClose: (modal) => window.removeEventListener("keydown", onEscClose),
+      onShow: (modal) => document.addEventListener("keydown", onEscClose),
+      onClose: (modal) => document.removeEventListener("keydown", onEscClose),
     }
   );
     modal.show();

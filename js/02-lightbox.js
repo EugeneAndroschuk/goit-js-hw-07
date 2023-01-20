@@ -22,6 +22,3 @@ const galleryOfImages = new SimpleLightbox(".gallery a", {
   captionsData: 'alt',
   captionDelay: 250,
 });
-// galleryOfImages.on("show.simplelightbox", function () {
-      
-    // });
